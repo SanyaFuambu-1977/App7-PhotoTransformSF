@@ -101,11 +101,14 @@
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
           /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
+         
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
-          
+          var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+var data = imageData.data; // this is an array: [R, G, B, A, R, G, B, A,...]
+         <!-- the data will hold all the pixels and will help grab the pixel data from canvas 1 -->
           
           
         } // end of img.onload
@@ -145,6 +148,21 @@
         context.fillStyle = "black";
         context.fillText("Original image will go here", 10, 20);
       </script>
+
+     <canvas id="blueCanvas" width="600" height="500"></canvas> 
+     <!-- Second canvas for blue-only images -->
+<script>
+  // using this to put some starting text on the second canvas I just added
+  var blueCanvas = document.getElementById("blueCanvas");
+  var blueCtx = blueCanvas.getContext("2d");
+  blueCtx.font = "20px Calibri";
+  blueCtx.fillStyle = "black";
+  blueCtx.textAlign = "center";
+  <!-- adding text and ensureing the text is in the center, has black text, and is 20px so it can easily be read -->
+  blueCtx.fillText("Blue Intensity Image", blueCanvas.width / 2, blueCanvas.height / 2);
+ <!-- code will start with Blue Intensity Image writen on it -->
+</script>
+     
 
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
